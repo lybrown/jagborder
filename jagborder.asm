@@ -544,18 +544,43 @@
     ; end $2e1
     ;dta $00,$20
     org $2100
-    mva #$29 HPOSP3
-    sta HPOSM1
-    mva #$CF HPOSP2
-    sta HPOSM0
-    mva #$9F $2047
+    ldx #$1D
+    mva:rpl reg,x $D000,x-
+    mva #$5F $2047
     sta $2011
-    mva #$FC GRACTL
-    mva #$FF GRAFM
-    sta GRAFP2
-    sta GRAFP3
-    sta SIZEM
+    mva #$A0 $7002
     jmp $2000
+reg
+    dta $00 ; HPOSP0  equ $d000
+    dta $00 ; HPOSP1  equ $d001
+    dta $11 ; HPOSP2  equ $d002
+    dta $CF ; HPOSP3  equ $d003
+    dta $21 ; HPOSM0  equ $d004
+    dta $29 ; HPOSM1  equ $d005
+    dta $CF ; HPOSM2  equ $d006
+    dta $D7 ; HPOSM3  equ $d007
+    dta $FF ; SIZEP0  equ $d008
+    dta $FF ; SIZEP1  equ $d009
+    dta $FF ; SIZEP2  equ $d00a
+    dta $FF ; SIZEP3  equ $d00b
+    dta $FF ; SIZEM   equ $d00c
+    dta $FF ; GRAFP0  equ $d00d
+    dta $FF ; GRAFP1  equ $d00e
+    dta $FF ; GRAFP2  equ $d00f
+    dta $FF ; GRAFP3  equ $d010
+    dta $FF ; GRAFM   equ $d011
+    dta $FF ; COLPM0  equ $d012
+    dta $FF ; COLPM1  equ $d013
+    dta $FF ; COLPM2  equ $d014
+    dta $FF ; COLPM3  equ $d015
+    dta $FF ; COLPF0  equ $d016
+    dta $FF ; COLPF1  equ $d017
+    dta $FF ; COLPF2  equ $d018
+    dta $FF ; COLPF3  equ $d019
+    dta $00 ; COLBAK  equ $d01a
+    dta $5F ; PRIOR   equ $d01b
+    dta $00 ; VDELAY  equ $d01c
+    dta $FC ; GRACTL  equ $d01d
     run $2100
 
 
